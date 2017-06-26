@@ -3,9 +3,9 @@
   <!-- vacum gripper -->
   <xacro:include filename="$(find mrk_robot_support)/urdf/vacuum_gripper_macro.xacro"/>
 
-  <!-- common stuff -->
+  <!-- gazebo stuff -->
   <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
-
+  <xacro:include filename="$(find mrk_robot_support)/urdf/gazebo_extension.xacro" />
   <!-- ur5 -->
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
 
