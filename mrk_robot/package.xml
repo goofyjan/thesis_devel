@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <name>mrk_robot</name>
+  <version>0.0.0</version>
+  <description>The mrk_robot package</description>
+
+  <maintainer email="jan.throener@rub.de">Jan Thröner</maintainer>
+  <author email="jan.throener@rub.de">Jan Thröner</author>
+  <license>GLPv3</license>
+  <url type="website">https://github.com/goofyno/thesis_devel</url>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rospy</run_depend>
+
+  <run_depend>urdf</run_depend>
+  <run_depend>xacro</run_depend>
+  <run_depend>moveit_msgs</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+
+  <export>
+  </export>
+  
+</package>
