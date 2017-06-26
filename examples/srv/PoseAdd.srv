@@ -1,0 +1,4 @@
+geometry_msgs/Pose a
+geometry_msgs/Pose b
+---
+geometry_msgs/Pose sum
