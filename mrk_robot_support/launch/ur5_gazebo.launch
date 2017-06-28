@@ -5,9 +5,10 @@
   <arg name="gui" default="true" />
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
-  <param name="use_gui" value="$(arg gui)"/>
+  <!--param name="use_gui" value="$(arg gui)"/-->
   <!-- Load roboter model into parameter server -->
-  <rosparam file="$(find ur_gazebo)/controller/arm_controller_ur5.yaml" command="load" />
+  <!--rosparam file="$(find ur_gazebo)/controller/arm_controller_ur5.yaml" command="load" /-->
+  <rosparam file="$(find mrk_robot_support)/config/controllers.yaml" command="load" />
   
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
@@ -17,6 +18,8 @@
   <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper" />
   <!-- Spawn conroller -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller" />
+  <!--param name="use_controller_manager" value="true" /-->
+
 
   
 </launch>
