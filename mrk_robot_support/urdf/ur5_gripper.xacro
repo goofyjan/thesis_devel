@@ -79,7 +79,7 @@
   </joint>  
   <!-- end: base link -->
 
-  <!-- start: gripper interface plate link/joint -->
+  <!-- start: gripper interface plate link/joint
   <link name="${arm_prefix}tool_interface_plate">
     <visual>
       <geometry>
@@ -97,15 +97,15 @@
   <joint name="${arm_prefix}to_interface_plate" type="fixed">
     <parent link="${arm_prefix}ee_link"/>
     <child link="${arm_prefix}tool_interface_plate"/>
-    <origin xyz="0.00635 0 0" rpy="0 1.57  0"/> <!-- 0 1.57 0 -->
+    <origin xyz="0.00635 0 0" rpy="0 1.57  0"/> 
   </joint>  
-  <!-- end: gripper interface plate link/joint -->
+  end: gripper interface plate link/joint -->
 
   <!-- start: arm-gripper joint -->
     <joint name="${arm_prefix}to_gripper" type="fixed">
       <parent link="${arm_prefix}ee_link"/>
       <child link="${arm_prefix}gripper_frame"/>
-      <origin xyz="0.02 0 0" rpy="-1.57 0 -1.57"/> <!-- 0 1.57 0 -->
+      <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/> <!-- 0 1.57 0 -->
     </joint>
     <!-- end: arm-gripper joint -->
 </robot>
