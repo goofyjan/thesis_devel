@@ -1,5 +1,7 @@
 <?xml version="1.0" ?>
 <robot name="ur5_gripper" xmlns:xacro="https://ros.org/wiki/xacro">
+
+  <!-- start: including -->
   <!-- vacum gripper -->
   <xacro:include filename="$(find mrk_robot_support)/urdf/vacuum_gripper_macro.xacro"/>
 
@@ -8,16 +10,24 @@
   <xacro:include filename="$(find mrk_robot_support)/urdf/gazebo_extension.xacro" />
   <!-- ur5 -->
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
+  <!-- end: including -->
+  
+  <!-- start: properties -->
+  <xacro:property name="stand_radius" value="0.08" />
+  <xacro:property name="stand_length" value="0.5" />
+  <xacro:property name="stand_mass" value="20.0" />
+  <xacro:property name="arm_prefix" value=""/>
+  <!-- end: properties -->
 
-  <!-- arm -->
+  <!-- start: compentens instantiating -->
+  <!-- arm instance-->
   <xacro:ur5_robot prefix="" joint_limited="true"/>
 
-  <!-- properties -->
-  <xacro:property name="base_radius" value="0.08" />
-  <xacro:property name="base_length" value="0.5" />
-  <xacro:property name="base_mass" value="20.0" />
+  <!-- gripper instance-->
+  <xacro:vacuum_gripper_definition prefix="${arm_prefix}" gripper_adjustment="0.01"/>
+  <!-- end: compentens instantiating -->
   
-  <!-- xacro macros -->
+  <!-- start: xacro cylinder inertial -->
   <xacro:macro name="cylinder_inertial" params="radius length mass *origin">
     <inertial>
       <mass value="${mass}" />
@@ -27,34 +37,37 @@
         izz="${0.5 * mass * radius * radius}" />
     </inertial>
   </xacro:macro>
-
+  <!-- end: xacro cylinder inertial -->
+  
+  <!-- start: xacro cylinder geometry -->
   <xacro:macro name="cylinder_geometry" params="radius length">
     <cylinder radius="${radius}" length="${length}"/>
   </xacro:macro>
-
-  <!-- start: world link -->
+  <!-- end: xacro cylinder geometry -->
+  
+  <!-- start: world link/joint -->
   <link name="world" />
 
   <joint name="world_to_stand" type="fixed">
     <parent link="world" />
     <child link = "stand_link" />
-    <origin xyz="0.0 0.0 ${base_length/2}" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.0 0.0 ${stand_length/2}" rpy="0.0 0.0 0.0" />
   </joint>  
   <!-- end: world link -->
   
-  <!-- start: base link -->
+  <!-- start: base link/joint -->
   <link name="stand_link">
     <visual>
       <geometry>
-        <xacro:cylinder_geometry radius="${base_radius}" length="${base_length}" />
+        <xacro:cylinder_geometry radius="${stand_radius}" length="${stand_length}" />
       </geometry>
     </visual>
     <collision>
       <geometry>
-        <xacro:cylinder_geometry radius="${base_radius}" length="${base_length}" />
+        <xacro:cylinder_geometry radius="${stand_radius}" length="${stand_length}" />
       </geometry>
     </collision>
-    <xacro:cylinder_inertial radius="${base_radius}" length="${base_length}" mass="${base_mass}">
+    <xacro:cylinder_inertial radius="${stand_radius}" length="${stand_length}" mass="${stand_mass}">
       <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
     </xacro:cylinder_inertial>
   </link>
@@ -62,8 +75,37 @@
   <joint name="stand_to_robot" type="fixed">
     <parent link="stand_link" />
     <child link = "base_link" />
-    <origin xyz="0.0 0.0 ${base_length/2}" rpy="0.0 0.0 0.0" />
+    <origin xyz="0.0 0.0 ${stand_length/2}" rpy="0.0 0.0 0.0" />
   </joint>  
   <!-- end: base link -->
 
+  <!-- start: gripper interface plate link/joint -->
+  <link name="${arm_prefix}tool_interface_plate">
+    <visual>
+      <geometry>
+        <box size="0.09525 0.09525 0.0127"/>
+      </geometry>
+      <material name="orange_transparent"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.09525 0.09525 0.0127"/>
+      </geometry>
+      <material name="blue_transparent"/>
+    </collision>
+  </link>
+  <joint name="${arm_prefix}to_interface_plate" type="fixed">
+    <parent link="${arm_prefix}ee_link"/>
+    <child link="${arm_prefix}tool_interface_plate"/>
+    <origin xyz="0.00635 0 0" rpy="0 1.57  0"/> <!-- 0 1.57 0 -->
+  </joint>  
+  <!-- end: gripper interface plate link/joint -->
+
+  <!-- start: arm-gripper joint -->
+    <joint name="${arm_prefix}to_gripper" type="fixed">
+      <parent link="${arm_prefix}ee_link"/>
+      <child link="${arm_prefix}gripper_frame"/>
+      <origin xyz="0.02 0 0" rpy="-1.57 0 -1.57"/> <!-- 0 1.57 0 -->
+    </joint>
+    <!-- end: arm-gripper joint -->
 </robot>
