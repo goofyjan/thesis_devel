@@ -2,9 +2,8 @@
 <robot name="ur5_gripper" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- start: including -->
-  <!-- vacum gripper -->
-  <xacro:include filename="$(find mrk_robot_support)/urdf/vacuum_gripper_macro.xacro"/>
-
+  <!-- gripper -->
+  <xacro:include filename="$(find mrk_robot_support)/urdf/gripper.xacro" />
   <!-- gazebo stuff -->
   <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
   <xacro:include filename="$(find mrk_robot_support)/urdf/gazebo_extension.xacro" />
@@ -14,17 +13,17 @@
   
   <!-- start: properties -->
   <xacro:property name="stand_radius" value="0.08" />
-  <xacro:property name="stand_length" value="0.5" />
+  <xacro:property name="stand_length" value="1.03" />
   <xacro:property name="stand_mass" value="20.0" />
   <xacro:property name="arm_prefix" value=""/>
   <!-- end: properties -->
 
   <!-- start: compentens instantiating -->
   <!-- arm instance-->
-  <xacro:ur5_robot prefix="" joint_limited="true"/>
+  <xacro:ur5_robot prefix="${arm_prefix}" joint_limited="true"/>
 
   <!-- gripper instance-->
-  <xacro:vacuum_gripper_definition prefix="${arm_prefix}" gripper_adjustment="0.01"/>
+
   <!-- end: compentens instantiating -->
   
   <!-- start: xacro cylinder inertial -->
@@ -82,8 +81,8 @@
   <!-- start: arm-gripper joint -->
     <joint name="${arm_prefix}to_gripper" type="fixed">
       <parent link="${arm_prefix}ee_link"/>
-      <child link="${arm_prefix}gripper_frame"/>
-      <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/> <!-- 0 1.57 0 -->
+      <child link="gripper_ankle"/>
+      <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/> 
     </joint>
-    <!-- end: arm-gripper joint -->
+  <!-- end: arm-gripper joint -->
 </robot>

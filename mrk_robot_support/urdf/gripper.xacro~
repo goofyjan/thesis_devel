@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<robot name="gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:property name="pi" value="3.1415926535897931" />
+  <xacro:property name="finger_height" value="0.03" />
+  <xacro:property name="finger_width" value="0.1" />
+  <xacro:property name="mass" value="0.1" />
+  
+  <xacro:macro name="block" params="name height width depth mass *origin">
+    <link name="${name}">
+      <visual>
+	<geometry>
+	  <box size="${height} ${width} ${depth}" />
+	</geometry>
+	<xacro:insert_block name="origin" />
+      </visual>
+      <collision>
+	<geometry>
+	  <box size="${height} ${width} ${depth}" />
+	</geometry>
+	<xacro:insert_block name="origin" />
+      </collision>
+      <inertial>
+	<mass value="${mass}" />
+	<inertia ixx="${mass/12*(width * width + depth * depth)}" ixy="0.0" ixz="0.0"
+		 iyy="${mass/12*(depth * depth + height * height)}" iyz="0.0"
+		 izz="${mass/12*(width * width + height * height)}" />
+      </inertial>  
+    </link>
+  </xacro:macro>
+
+  <xacro:block name="gripper_ankle" height="${finger_height}" width="${finger_width}" depth="${finger_height}" mass="${mass}">
+    <origin xyz="0.0 0.0 0.015" rpy="0 0 ${pi/2}" />
+  </xacro:block>
+
+  <xacro:block name="gripper_r_finger" height="0.03" width="0.1" depth="0.03" mass="0.1">
+    <origin xyz="0.0 0.0 0.0" rpy="0 ${pi/2} 0" />
+  </xacro:block>
+
+  <joint name="gripper_r_finger_to_ankle" type="prismatic">
+    <limit lower="0.015" upper="0.035" effort="100" velocity="0.25"/>
+    <dynamics damping="0.1"></dynamics>
+    <parent link="gripper_ankle"/>
+    <child link="gripper_r_finger"/>
+    <origin xyz="0.0 0.0 0.0" rpy="${pi/2} 0 0" />
+  </joint>
+  
+  <xacro:block name="gripper_l_finger" height="0.03" width="0.1" depth="0.03" mass="0.1">
+    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+  </xacro:block>
+
+  <joint name="gripper_l_finger_to_ankle" type="prismatic">
+    <limit lower="-0.015" upper="-0.035" effort="100" velocity="0.25"/>
+    <mimic joint="gripper_r_finger_to_ankle" multiplier="-1" />
+    <parent link="gripper_ankle"/>
+    <child link="gripper_l_finger"/>
+    <origin xyz="0.0 0.0 0.0" rpy="-${pi/2} 0 0" />
+  </joint>
+  
+</robot>

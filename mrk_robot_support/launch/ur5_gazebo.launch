@@ -2,7 +2,7 @@
 <launch>
 
   <arg name="model" default="$(find mrk_robot_support)/urdf/ur5_gripper.xacro"/>
-  <arg name="gui" default="true" />
+  <arg name="gui" default="false" />
 
   <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
   <!--param name="use_gui" value="$(arg gui)"/-->
@@ -13,13 +13,13 @@
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
   <!-- Start Gazebo with an empty world -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch" />
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find mrk_robot_support)/worlds/beer.world"/>
+    <arg name="paused" value="true"/>
+  </include>
   <!-- Spawn robot model in Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -J gripper_r_finger_to_ankle 0.09 -unpause" />
   <!-- Spawn conroller -->
-  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller" />
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller gripper_controller" />
   <!--param name="use_controller_manager" value="true" /-->
-
-
-  
 </launch>
