@@ -13,7 +13,7 @@
   
   <!-- start: properties -->
   <xacro:property name="stand_radius" value="0.08" />
-  <xacro:property name="stand_length" value="1.03" />
+  <xacro:property name="stand_length" value="1.1" />
   <xacro:property name="stand_mass" value="20.0" />
   <xacro:property name="arm_prefix" value=""/>
   <!-- end: properties -->
