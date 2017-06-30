@@ -81,18 +81,18 @@
       <heading_deg>0</heading_deg>
     </spherical_coordinates>
     <state world_name='default'>
-      <sim_time>396 284000000</sim_time>
-      <real_time>417 472491346</real_time>
-      <wall_time>1498754368 234829384</wall_time>
-      <iterations>396284</iterations>
-      <model name='beer_0'>
-        <pose frame=''>0.828859 0.401261 1 -8e-06 3e-06 -0.002129</pose>
+      <sim_time>517 101000000</sim_time>
+      <real_time>57 463063586</real_time>
+      <wall_time>1498831426 861806906</wall_time>
+      <iterations>51096</iterations>
+      <model name='beer'>
+        <pose frame=''>0.815368 0.327262 0.999998 -1.2e-05 1.9e-05 -0.010316</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>0.828859 0.401262 1.115 -8e-06 3e-06 -0.002129</pose>
+          <pose frame=''>0.81537 0.327263 1.115 -1.2e-05 1.9e-05 -0.010316</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>-2.64379 -6.0594 5.63178 2.53144 1.01575 -1.14991</acceleration>
-          <wrench>-1.03108 -2.36316 2.19639 0 -0 0</wrench>
+          <acceleration>2.02752 1.98523 -5.13796 1.73809 -1.45478 0.105597</acceleration>
+          <wrench>0.790731 0.774241 -2.0038 0 -0 0</wrench>
         </link>
       </model>
       <model name='ground_plane'>
@@ -105,23 +105,30 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='unit_box_0_0'>
-        <pose frame=''>0.798647 0.61049 0.5 0 -0 0.003157</pose>
+      <model name='unit_box'>
+        <pose frame=''>0.798585 0.610609 0.5 0 -0 0.003194</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>0.798647 0.61049 0.5 0 -0 0.003157</pose>
+          <pose frame=''>0.798585 0.610609 0.5 0 -0 0.003194</pose>
           <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0.016208 0.016811 -0.000247 -0.033632 0.032422 3e-06</acceleration>
-          <wrench>1.62083 1.68107 -0.024711 0 -0 0</wrench>
+          <acceleration>-0.000652 -0.000573 0.00024 0.001137 -0.001307 -3e-06</acceleration>
+          <wrench>-0.065175 -0.057304 0.023951 0 -0 0</wrench>
         </link>
       </model>
       <light name='sun'>
         <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
     </state>
-    <model name='beer_0'>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>0.982187 1.1888 1.37171 0 0.3818 -1.69866</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='beer'>
       <link name='link'>
-        <pose frame=''>0 -0 0.115 0 -0 0</pose>
+        <pose frame=''>0 0 0.115 0 -0 0</pose>
         <inertial>
           <mass>0.39</mass>
           <inertia>
@@ -168,7 +175,7 @@
           <pose frame=''>0 0 0 0 -0 0</pose>
           <geometry>
             <box>
-              <size>0.12 0.12 0.23</size>
+              <size>0.11 0.11 0.23</size>
             </box>
           </geometry>
           <surface>
@@ -220,9 +227,9 @@
       </link>
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
-      <pose frame=''>0.780005 0.301124 0.999998 -3e-06 -4.8e-05 0.001854</pose>
+      <pose frame=''>0.827154 0.347165 1 1.1e-05 -4e-06 -0.004989</pose>
     </model>
-    <model name='unit_box_0_0'>
+    <model name='unit_box'>
       <link name='link'>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <inertial>
@@ -239,7 +246,6 @@
         </inertial>
         <self_collide>0</self_collide>
         <kinematic>0</kinematic>
-        <gravity>1</gravity>
         <visual name='visual'>
           <geometry>
             <box>
@@ -318,17 +324,11 @@
             </contact>
           </surface>
         </collision>
+        <gravity>1</gravity>
       </link>
       <static>0</static>
       <allow_auto_disable>1</allow_auto_disable>
-      <pose frame=''>0.798659 0.606944 0.495107 0.004852 0.000112 0.003153</pose>
+      <pose frame=''>0.798585 0.6106 0.5 0 -0 0.003195</pose>
     </model>
-    <gui fullscreen='0'>
-      <camera name='user_camera'>
-        <pose frame=''>2.22577 0.066821 1.59884 0 -0.015402 3.02852</pose>
-        <view_controller>orbit</view_controller>
-        <projection_type>perspective</projection_type>
-      </camera>
-    </gui>
   </world>
 </sdf>
