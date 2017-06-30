@@ -1,0 +1,10 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: mrk_robot_support
+    relative_path: urdf/ur5_gripper.xacro
+  SRDF:
+    relative_path: config/ur5_gripper.srdf
+  CONFIG:
+    author_name: jth
+    author_email: jth@jth.com
+    generated_timestamp: 1498758676

@@ -24,8 +24,8 @@ gripper_controller:
       goal: 0.02
 
   gains:
-    r_finger_joint: {p: 100,  d: 1, i: 1, i_clamp: 1}
-    l_finger_joint: {p: 100,  d: 1, i: 1, i_clamp: 1}    
+    r_finger_joint: {p: 50,  d: 0.1, i: 1, i_clamp: 1}
+    l_finger_joint: {p: 50,  d: 0.1, i: 1, i_clamp: 1}    
 
   state_publish_rate: 25
   action_monitor_rate: 30
