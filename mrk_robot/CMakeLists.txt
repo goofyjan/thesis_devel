@@ -4,8 +4,15 @@ project(mrk_robot)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
+  sys             
+  copy            
+  moveit_commander  
 )
-
+add_message_files(FILES
+  moveit_msgs.msg  
+  shape_msgs.msg   
+  geometry_msgs.msg
+  )
 
 ###################################
 ## catkin specific configuration ##
@@ -13,7 +20,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES mrk_robot
-#  CATKIN_DEPENDS roscpp rospy
+CATKIN_DEPENDS roscpp rospy moveit_commander sys copy
 #  DEPENDS system_lib
 )
 
