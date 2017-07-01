@@ -28,7 +28,7 @@
   <!-- gripper instance-->
   <!-- RGB-D camera instance -->
   <xacro:xtion_pro_live name="rgbd_camera" parent="base">
-    <origin xyz="0.1 0 1" rpy="0 ${75.0 * deg_to_rad} 0"/>
+    <origin xyz="0.1 0 2" rpy="0 ${75.0 * deg_to_rad} 0"/>
     <origin xyz="0 0 0" rpy="${-90.0 * deg_to_rad} 0 ${-90.0 * deg_to_rad}"/>
   </xacro:xtion_pro_live>
   <!-- end: compentens instantiating -->
