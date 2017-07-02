@@ -4,7 +4,7 @@
   <gazebo>
     <plugin name="joint_state_publisher" filename="libgazebo_ros_joint_state_publisher.so">
       <jointName>shoulder_pan_joint, shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint, r_finger_joint, l_finger_joint</jointName>
-      <updateRate>100</updateRate>
+      <updateRate>50</updateRate>
     </plugin>
     <!-- <plugin name="gazebo_mimic_plugin" filename="libroboticsgroup_gazebo_mimic_joint_plugin.so"> -->
     <!--   <joint>r_finger_joint</joint> -->
@@ -14,21 +14,21 @@
     
   </gazebo>
   <gazebo reference="gripper_r_finger">
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
-    <material>Gazebo/Blue</material>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
+   <material>Gazebo/Blue</material>
   </gazebo>
   <gazebo reference="gripper_l_finger">
-    <mu1>0.9</mu1>
-    <mu2>0.9</mu2>
+    <mu1>0.2</mu1>
+    <mu2>0.2</mu2>
     <material>Gazebo/Red</material>
   </gazebo>
   <gazebo>
     <gripper name="grasping">
         <grasp_check>
-            <attach_steps>1</attach_steps>
-            <detach_steps>4</detach_steps>
-            <min_contact_count>2</min_contact_count>
+            <attach_steps>3</attach_steps>
+            <detach_steps>3</detach_steps>
+            <min_contact_count>1</min_contact_count>
         </grasp_check>
         <gripper_link>gripper_r_finger</gripper_link>
         <gripper_link>gripper_l_finger</gripper_link>

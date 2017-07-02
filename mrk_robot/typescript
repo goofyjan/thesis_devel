@@ -1,0 +1,21 @@
+Script started on Sa 01 Jul 2017 17:32:27 CEST
+l[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot]1;..src/mrk_robot[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot [43m[34m[30m  devel-moveit [49m[33m[39m [K[?1h=[?2004hllls l ls[?1l>[?2004l
+]2;ls --color=tty]1;lsCMakeLists.txt   [0m[01;34minclude[0m      package.xml~  [01;34msrc[0m
+CMakeLists.txt~  package.xml  [01;34mscripts[0m       typescript
+[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot]1;..src/mrk_robot[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot [43m[34m[30m  devel-moveit [49m[33m[39m [K[?1h=[?2004hsscripts 
+[J[0mscript        [Jscriptreplay  [J[01;34mscripts[0m/    [J[A[0m[27m[24m[0m[27m[24m[39m[49m[56Cscript[K[0m[27m[24m[39m[49ms[?1l>[?2004l
+[J]2;scripts]1;scripts[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot/scripts]1;..robot/scripts[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot/scripts [43m[34m[30m  devel-moveit [49m[33m[39m [K[?1h=[?2004hlls[?1l>[?2004l
+]2;ls --color=tty]1;ls[0m[01;32mmoveit_test.py[0m  [01;32mmoveit_test.py~[0m  rospy  sys
+[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot/scripts]1;..robot/scripts[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot/scripts [43m[34m[30m  devel-moveit [49m[33m[39m [K[?1h=[?2004hlls l  eece  rrm rospy[1m [0m[0m sz ys[1m [0m[0m [?1l>[?2004l
+]2;rm rospy sys]1;rm[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot/scripts]1;..robot/scripts[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot/scripts [43m[34m[30m  devel-moveit ● [49m[33m[39m [K[?1h=[?2004hlls[?1l>[?2004l
+]2;ls --color=tty]1;ls[0m[01;32mmoveit_test.py[0m  [01;32mmoveit_test.py~[0m
+[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot/scripts]1;..robot/scripts[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot/scripts [43m[34m[30m  devel-moveit ● [49m[33m[39m [K[?1h=[?2004hrrosrun mrk_robot moveit_test.py[K[?1l>[?2004l
+]2;rosrun mrk_robot moveit_test.py]1;rosrun============ Starting tutorial setup
+[0m[ INFO] [1498923727.097528013, 1100.236000000]: Loading robot model 'ur5_gripper'...[0m
+[0m[ INFO] [1498923727.097585009, 1100.236000000]: No root/virtual joint specified in SRDF. Assuming fixed joint[0m
+[0m[ INFO] [1498923727.612383028, 1100.608000000]: Loading robot model 'ur5_gripper'...[0m
+[0m[ INFO] [1498923727.613070693, 1100.609000000]: No root/virtual joint specified in SRDF. Assuming fixed joint[0m
+[0m[ INFO] [1498923728.727359249, 1101.480000000]: Ready to take commands for planning group arm.[0m
+[0m[ INFO] [1498923751.397244389, 1118.171000000]: ABORTED: Solution found but controller failed during execution[0m
+[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot/scripts]1;..robot/scripts[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot/scripts [43m[34m[30m  devel-moveit ● [49m[33m[39m [K[?1h=[?2004hlls[?1l>[?2004l
+]2;ls --color=tty]1;ls[0m[
