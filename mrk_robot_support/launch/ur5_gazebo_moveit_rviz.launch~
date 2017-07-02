@@ -4,7 +4,8 @@
   <arg name="debug" default="false" />
   <arg name="model" default="$(find mrk_robot_support)/urdf/ur5_gripper.xacro"/>
   <arg name="gui" default="false" />
-
+  <arg name="rvizconfig" default="$(find mrk_robot_support)/rviz/rgbd_pcl.rviz" />
+  
   <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
   <include file="$(find mrk_moveit_config)/launch/planning_context.launch">
     <arg name="load_robot_description" value="true"/>
@@ -15,8 +16,7 @@
     <!-- We do not have a robot connected, so publish fake joint states -->
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
     <param name="/use_gui" value="false"/>
-    <rosparam param="/source_list">[/move_group/fake_controller_joint_states]</rosparam>
-  </node>
+    </node>
 
   <!-- Given the published joint states, publish tf for the robot links -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
@@ -25,20 +25,23 @@
   <include file="$(find mrk_moveit_config)/launch/move_group.launch">
     <arg name="allow_trajectory_execution" value="true"/>
     <arg name="fake_execution" value="false"/>
+    <arg name="publish_monitored_planning_scene" value="true" />
     <arg name="info" value="true"/>
     <arg name="debug" value="$(arg debug)"/>
   </include>
 
-  <!--node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" /-->
-  <!--node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" /-->
   <!-- Start Gazebo with an empty world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find mrk_robot_support)/worlds/beer.world"/>
     <arg name="paused" value="false"/>
   </include>
   <!-- Spawn robot model in Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -J r_finger_joint 0.09 -J l_finger_joint 0.09" /> <!-- -J gripper_r_finger_to_ankle -0.03 -J gripper_l_finger_to_ankle 0.03 -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -J r_finger_joint 0.09 -J l_finger_joint 0.09" />
+
   <!-- Spawn conroller -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller gripper_controller --shutdown-timeout 3" />
-    <!--param name="use_controller_manager" value="true" /-->
+
+  <!-- rviz launch -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+  
 </launch>
