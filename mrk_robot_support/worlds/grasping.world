@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<sdf version="1.4">
+  <world name="default">
+    <include>
+      <uri>model://ground_plane</uri>
+    </include>
+    <include>
+      <uri>model://sun</uri>
+    </include>
+    <include>
+      <uri>file:///home/jth/thesis_ws/src/mrk_robot_support/models/risebox</uri>
+      <pose>0 -1.3 0  0 0 0</pose>
+    </include>
+    <include>
+      <uri>file:///home/jth/thesis_ws/src/mrk_robot_support/models/person_walking</uri>
+      <pose>0 -1.3 0.4  0 0 3.1416</pose>
+    </include>
+        <include>
+      <uri>file:///home/jth/thesis_ws/src/mrk_robot_support/models/workbench</uri>
+      <pose>0 -1.4 0  0 0 0</pose>
+    </include>
+
+    <!-- <model name="workbench"> -->
+    <!--   <pose>0 -1.4 0  0 0 0</pose> -->
+    <!--   <static>true</static> -->
+    <!--   <link name="body"> -->
+    <!--     <visual name="visual"> -->
+    <!--       <geometry> -->
+    <!--         <mesh> -->
+    <!-- 	      <uri>file:///home/jth/thesis_ws/src/mrk_robot_support/models/workbench/workbench.dae</uri> -->
+    <!-- 	      <scale>0.001 0.001 0.001</scale> -->
+    <!-- 	    </mesh> -->
+    <!--       </geometry> -->
+    <!--     </visual> -->
+    <!--   </link> -->
+    <!-- </model> -->
+  </world>
+</sdf>
+
