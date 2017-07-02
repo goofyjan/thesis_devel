@@ -4,15 +4,15 @@
     <link name='body'>
       <pose frame=''>0 0 0 0 -0 0</pose>
       <inertial>
-        <mass>1000</mass>
+        <mass>1</mass>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <inertia>
-          <ixx>166.666667</ixx>
+          <ixx>1</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>416.666667</iyy>
+          <iyy>1</iyy>
           <iyz>0</iyz>
-          <izz>416.666667</izz>
+          <izz>1</izz>
         </inertia>
       </inertial>
       <self_collide>0</self_collide>
@@ -41,15 +41,14 @@
           </shader>
         </material>
       </visual>
-      <collision name='collision'>
+            <collision name='collision'>
         <laser_retro>0</laser_retro>
         <max_contacts>10</max_contacts>
         <pose frame=''>0 0 0 0 -0 0</pose>
         <geometry>
-          <mesh>
-            <uri>file:///home/jth/thesis_ws/src/mrk_robot_support/meshes/workbench/workbench.dae</uri>
-            <scale>0.001 0.001 0.001</scale>
-          </mesh>
+          <box>
+            <size>0.8 0.8 0.4</size>
+          </box>
         </geometry>
         <surface>
           <friction>
