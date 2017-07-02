@@ -32,7 +32,7 @@
 
   <!-- Start Gazebo with an empty world -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find mrk_robot_support)/worlds/beer.world"/>
+    <arg name="world_name" value="$(find mrk_robot_support)/worlds/grasping.world"/>
     <arg name="paused" value="false"/>
   </include>
   <!-- Spawn robot model in Gazebo -->
