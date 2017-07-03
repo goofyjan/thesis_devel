@@ -1,10 +1,16 @@
 <?xml version="1.0" ?>
 <robot name="gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <!-- start: Properties -->
   <xacro:property name="pi" value="3.1415926535897931" />
   <xacro:property name="finger_width" value="0.03" />
-  <xacro:property name="finger_length" value="0.2" />
+  <xacro:property name="finger_length" value="0.12" />
+  <xacro:property name="ankle_width" value="0.03" />
+  <xacro:property name="ankle_length" value="0.2" />
   <xacro:property name="mass" value="0.1" />
-  
+  <!-- end: Properties -->
+
+  <!-- start: Macro Definitions -->
   <xacro:macro name="block" params="name height width depth mass *origin">
     <link name="${name}">
       <visual>
@@ -27,11 +33,15 @@
       </inertial>  
     </link>
   </xacro:macro>
-
-  <xacro:block name="gripper_ankle" height="${finger_width}" width="${finger_length}" depth="${finger_width}" mass="${mass}">
+  <!-- end: Macro Definitions -->
+  
+  <!-- start:Gripper Ankle -->
+  <xacro:block name="gripper_ankle" height="${ankle_width}" width="${ankle_length}" depth="${ankle_width}" mass="${mass}">
     <origin xyz="0.0 0.0 ${finger_width/2}" rpy="0 0 ${pi/2}" />
   </xacro:block>
-
+  <!-- end:Gripper Ankle -->
+  
+  <!-- start: Right Finger -->
   <xacro:block name="gripper_r_finger" height="${finger_width}" width="${finger_length}" depth="${finger_width}" mass="${mass}">
     <origin xyz="${finger_width/2} 0.0 0.0" rpy="0 ${pi/2} 0" />
   </xacro:block>
@@ -44,6 +54,18 @@
     <origin xyz="0.0 0.0 ${finger_length/2 + finger_width}" rpy="${pi/2} 0 ${pi}" />
   </joint>
   
+  <transmission name="gripper_r_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="r_finger_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="gripper_r_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <!-- end: Right Finger -->
+
+  <!-- start: Left Finger -->  
   <xacro:block name="gripper_l_finger" height="${finger_width}" width="${finger_length}" depth="${finger_width}" mass="${mass}">
     <origin xyz="${finger_width/2} 0.0 0.0" rpy="0 0 0" />
   </xacro:block>
@@ -56,16 +78,6 @@
     <origin xyz="0.0 0.0 ${finger_length/2 + finger_width}" rpy="${pi/2} 0 0" />
   </joint>
 
-  <transmission name="gripper_r_trans">
-    <type>transmission_interface/SimpleTransmission</type>
-    <joint name="r_finger_joint">
-      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
-    </joint>
-    <actuator name="gripper_r_motor">
-      <mechanicalReduction>1</mechanicalReduction>
-    </actuator>
-  </transmission>
-  
   <transmission name="gripper_l_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="l_finger_joint">
@@ -75,5 +87,6 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
+  <!-- end: Left Finger -->
   
 </robot>

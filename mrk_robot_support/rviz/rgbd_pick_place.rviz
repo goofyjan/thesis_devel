@@ -319,7 +319,7 @@ Visualization Manager:
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.100000001
-      Class: rviz/Pose
+      Class: rviz/PoseArray
       Color: 255; 25; 0
       Enabled: true
       Head Length: 0.300000012
@@ -334,7 +334,7 @@ Visualization Manager:
     - Alpha: 1
       Axes Length: 1
       Axes Radius: 0.100000001
-      Class: rviz/Pose
+      Class: rviz/PoseArray
       Color: 255; 25; 0
       Enabled: true
       Head Length: 0.300000012

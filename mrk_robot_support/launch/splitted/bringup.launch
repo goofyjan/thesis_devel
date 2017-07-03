@@ -4,7 +4,6 @@
   <arg name="debug" default="false" />
   <arg name="model" default="$(find mrk_robot_support)/urdf/ur5_gripper.xacro"/>
   <arg name="gui" default="false" />
-  <arg name="rvizconfig" default="$(find mrk_robot_support)/rviz/rgbd_pick_place.rviz" />
   
   <!-- Load the URDF, SRDF and other .yaml configuration files on the param server -->
   <include file="$(find mrk_moveit_config)/launch/planning_context.launch">
@@ -20,24 +19,7 @@
 
   <!-- Given the published joint states, publish tf for the robot links -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen" />
-
-  <!-- Run the main MoveIt executable without trajectory execution (we do not have controllers configured by default) -->
-  <include file="$(find mrk_moveit_config)/launch/move_group.launch">
-    <arg name="allow_trajectory_execution" value="true"/>
-    <arg name="fake_execution" value="false"/>
-    <arg name="publish_monitored_planning_scene" value="true" />
-    <arg name="info" value="true"/>
-    <arg name="debug" value="$(arg debug)"/>
-  </include>
-
-  <!-- Start Gazebo with an empty world -->
-  <include file="$(find gazebo_ros)/launch/empty_world.launch">
-    <arg name="world_name" value="$(find mrk_robot_support)/worlds/grasping.world"/>
-    <arg name="paused" value="false"/>
-  </include>
-  <!-- Spawn robot model in Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -J r_finger_joint 0.09 -J l_finger_joint 0.09" />
-
+  
   <!-- Spawn conroller -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller gripper_controller --shutdown-timeout 10" />
 
