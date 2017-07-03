@@ -36,7 +36,7 @@
     <arg name="paused" value="false"/>
   </include>
   <!-- Spawn robot model in Gazebo -->
-  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper -J r_finger_joint 0.09 -J l_finger_joint 0.09" />
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper" />
 
   <!-- Spawn conroller -->
   <node name="controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller gripper_controller --shutdown-timeout 10" />

@@ -38,7 +38,7 @@ class Pick_Place:
         self._grasp_object_width = rospy.get_param('~grasp_object_width', 0.01)
 
         self._arm_group     = rospy.get_param('~arm', 'arm')
-        self._gripper_group = rospy.get_param('~gripper', 'gripper')
+        #self._gripper_group = rospy.get_param('~gripper', 'gripper')
 
         self._approach_retreat_desired_dist = rospy.get_param('~approach_retreat_desired_dist', 0.2)
         self._approach_retreat_min_dist = rospy.get_param('~approach_retreat_min_dist', 0.1)
@@ -74,7 +74,7 @@ class Pick_Place:
 
         # Retrieve groups (arm and gripper):
         self._arm     = self._robot.get_group(self._arm_group)
-        self._gripper = self._robot.get_group(self._gripper_group)
+        #self._gripper = self._robot.get_group(self._gripper_group)
 
         # Create grasp generator 'generate' action client:
         self._grasps_ac = SimpleActionClient('/moveit_simple_grasps_server/generate', GenerateGraspsAction)
@@ -144,7 +144,7 @@ class Pick_Place:
         p.header.stamp = rospy.Time.now()
 
         p.pose.position.x = 0.03   
-        p.pose.position.y = -0.65
+        p.pose.position.y = -0.55
         p.pose.position.z = 1.3
 
         q = quaternion_from_euler(0.0, 0.0, 0.0)
