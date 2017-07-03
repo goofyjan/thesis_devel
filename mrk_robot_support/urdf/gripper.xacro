@@ -88,5 +88,14 @@
     </actuator>
   </transmission>
   <!-- end: Left Finger -->
+
+  <!-- start: Tool Center Point (TCP) -->
+  <link name="tcp_link"/>
+  <joint name="tcp_joint" type="fixed">
+    <origin xyz="0 0 ${ankle_width + finger_length/2}" rpy="0 ${-pi/2} ${-pi/2}"/>
+    <parent link="gripper_ankle"/>
+    <child link="tcp_link"/>
+  </joint>
+  <!-- end: Tool Center Point (TCP) -->
   
 </robot>

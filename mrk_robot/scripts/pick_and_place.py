@@ -38,7 +38,7 @@ class Pick_Place:
         self._grasp_object_width = rospy.get_param('~grasp_object_width', 0.01)
 
         self._arm_group     = rospy.get_param('~arm', 'arm')
-        #self._gripper_group = rospy.get_param('~gripper', 'gripper')
+        self._gripper_group = rospy.get_param('~gripper', 'gripper')
 
         self._approach_retreat_desired_dist = rospy.get_param('~approach_retreat_desired_dist', 0.2)
         self._approach_retreat_min_dist = rospy.get_param('~approach_retreat_min_dist', 0.1)
@@ -74,7 +74,7 @@ class Pick_Place:
 
         # Retrieve groups (arm and gripper):
         self._arm     = self._robot.get_group(self._arm_group)
-        #self._gripper = self._robot.get_group(self._gripper_group)
+        self._gripper = self._robot.get_group(self._gripper_group)
 
         # Create grasp generator 'generate' action client:
         self._grasps_ac = SimpleActionClient('/moveit_simple_grasps_server/generate', GenerateGraspsAction)
@@ -131,7 +131,7 @@ class Pick_Place:
 
         # Table size from ~/.gazebo/models/table/model.sdf, using the values
         # for the surface link.
-        self._scene.add_box(name, p, (2.0, 1.0, 1.0))
+        self._scene.add_box(name, p, (2.0, 1.0, 0.01))
         # Link Table to world link
         self._scene.attach_box('world', name)
 
@@ -143,7 +143,7 @@ class Pick_Place:
         rospy.loginfo(p.header.frame_id)
         p.header.stamp = rospy.Time.now()
 
-        p.pose.position.x = 0.35   
+        p.pose.position.x = 0.03   
         p.pose.position.y = -0.65
         p.pose.position.z = 1.3
 
@@ -154,7 +154,7 @@ class Pick_Place:
         # using the measure tape tool from meshlab.
         # The box is the bounding box of the coke cylinder.
         # The values are taken from the cylinder base diameter and height.
-        self._scene.add_box(name, p, (0.11, 0.11, 0.23))
+        self._scene.add_box(name, p, (0.03, 0.03, 0.03))
         # Link graps block to world link
         self._scene.attach_box('world', name)
         return p.pose
@@ -265,7 +265,7 @@ class Pick_Place:
         goal.support_surface_name = self._table_object_name
 
         # Configure goal planning options:
-        goal.allowed_planning_time = 15.0
+        goal.allowed_planning_time = 30.0
 
         goal.planning_options.planning_scene_diff.is_diff = True
         goal.planning_options.planning_scene_diff.robot_state.is_diff = True
@@ -289,7 +289,7 @@ class Pick_Place:
         goal.place_locations.extend(places)
 
         # Configure goal planning options:
-        goal.allowed_planning_time = 15.0
+        goal.allowed_planning_time = 30.0
 
         goal.planning_options.planning_scene_diff.is_diff = True
         goal.planning_options.planning_scene_diff.robot_state.is_diff = True
