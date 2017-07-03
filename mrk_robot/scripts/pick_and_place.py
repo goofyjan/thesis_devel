@@ -67,14 +67,15 @@ class Pick_Place:
         self._pose_place = Pose()
 
         self._pose_place.position.x = self._pose_coke_can.position.x 
-        self._pose_place.position.y = self._pose_coke_can.position.y - 0.06
+        self._pose_place.position.y = self._pose_coke_can.position.y + 0.06
         self._pose_place.position.z = self._pose_coke_can.position.z 
 
         self._pose_place.orientation = Quaternion(*quaternion_from_euler(0.0, 0.0, 0.0))
 
         # Retrieve groups (arm and gripper):
+        #self._gripper = self._robot.get_group(self._gripper_group)
         self._arm     = self._robot.get_group(self._arm_group)
-        self._gripper = self._robot.get_group(self._gripper_group)
+
 
         # Create grasp generator 'generate' action client:
         self._grasps_ac = SimpleActionClient('/moveit_simple_grasps_server/generate', GenerateGraspsAction)
@@ -119,29 +120,33 @@ class Pick_Place:
     def _add_table(self, name):
         p = PoseStamped()
         p.header.frame_id = self._robot.get_planning_frame()
+        rospy.loginfo(p.header.frame_id)
         p.header.stamp = rospy.Time.now()
 
-        p.pose.position.x = 0.45
-        p.pose.position.y = 0.0
-        p.pose.position.z = 0.22
+        p.pose.position.x = 0.0
+        p.pose.position.y = -0.7
+        p.pose.position.z = 0.5
 
-        q = quaternion_from_euler(0.0, 0.0, numpy.deg2rad(90.0))
+        q = quaternion_from_euler(0.0, 0.0, 0.0)
         p.pose.orientation = Quaternion(*q)
 
         # Table size from ~/.gazebo/models/table/model.sdf, using the values
         # for the surface link.
-        self._scene.add_box(name, p, (0.5, 0.4, 0.02))
+        self._scene.add_box(name, p, (2.0, 1.0, 1.0))
+        # Link Table to world link
+        self._scene.attach_box('world', name)
 
         return p.pose
 
     def _add_grasp_block_(self, name):
         p = PoseStamped()
         p.header.frame_id = self._robot.get_planning_frame()
+        rospy.loginfo(p.header.frame_id)
         p.header.stamp = rospy.Time.now()
 
-        p.pose.position.x = 0.25   
-        p.pose.position.y = 0.05
-        p.pose.position.z = 0.32
+        p.pose.position.x = -0.3   
+        p.pose.position.y = -0.5
+        p.pose.position.z = 1.115
 
         q = quaternion_from_euler(0.0, 0.0, 0.0)
         p.pose.orientation = Quaternion(*q)
@@ -150,8 +155,9 @@ class Pick_Place:
         # using the measure tape tool from meshlab.
         # The box is the bounding box of the coke cylinder.
         # The values are taken from the cylinder base diameter and height.
-        self._scene.add_box(name, p, (0.03, 0.03, 0.09))
-
+        self._scene.add_box(name, p, (0.11, 0.11, 0.23))
+        # Link graps block to world link
+        self._scene.attach_box('world', name)
         return p.pose
 
     def _generate_grasps(self, pose, width):
@@ -260,7 +266,7 @@ class Pick_Place:
         goal.support_surface_name = self._table_object_name
 
         # Configure goal planning options:
-        goal.allowed_planning_time = 7.0
+        goal.allowed_planning_time = 15.0
 
         goal.planning_options.planning_scene_diff.is_diff = True
         goal.planning_options.planning_scene_diff.robot_state.is_diff = True
@@ -284,7 +290,7 @@ class Pick_Place:
         goal.place_locations.extend(places)
 
         # Configure goal planning options:
-        goal.allowed_planning_time = 7.0
+        goal.allowed_planning_time = 15.0
 
         goal.planning_options.planning_scene_diff.is_diff = True
         goal.planning_options.planning_scene_diff.robot_state.is_diff = True

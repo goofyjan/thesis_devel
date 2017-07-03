@@ -21,7 +21,7 @@
     </include>
     <include>
       <uri>file:///home/jth/thesis_ws/src/mrk_robot_support/models/beer</uri>
-      <pose>-0.7 -0.7 1.0  0 0 0</pose>
+      <pose>-0.3 -0.4 1.0  0 0 0</pose>
     </include>
   </world>
 </sdf>
