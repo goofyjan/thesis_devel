@@ -13,12 +13,10 @@ def do_pose(goal):
 
     while start_pose.position.x < goal_pose.position.x:
         start_pose.position.x += 1
-
         feedback = PoseFeedback()
         feedback.current_pose = start_pose
         feedback.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
         server.publish_feedback(feedback)
-
         time.sleep(1.0)
 
     result = PoseResult()

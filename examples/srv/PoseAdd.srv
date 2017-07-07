@@ -1,4 +1,6 @@
+# Define the request
 geometry_msgs/Pose a
 geometry_msgs/Pose b
 ---
+# Define the response
 geometry_msgs/Pose sum

@@ -19,6 +19,5 @@ goal_pose.position.x = 5
 goal.goal_pose = goal_pose
 client.send_goal(goal, feedback_cb=feedback_cb)
 client.wait_for_result()
-print('[Result] State: %d' %(client.get_state()))
 print('[Result] Status: %s' %(client.get_goal_status_text()))
 print('[Result] Time elapsed: %f' %(client.get_result().time_elapsed.to_sec()))
