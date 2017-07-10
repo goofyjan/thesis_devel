@@ -3,7 +3,7 @@ base_link: 'base_link'
 gripper:
   end_effector_name: 'gripper'
 
-  # Gripper Joints
+  # Gripper joints
   joints: ['l_finger_joint', 'r_finger_joint']
 
   pregrasp_posture: [0.0, 0.0]
