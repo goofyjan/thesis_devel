@@ -31,7 +31,7 @@ robot.get_current_state
 
 pose_target = Pose()
 group.clear_pose_targets()
-# print robot.get_current_state()
+print robot.get_current_state()
 # pose_target.orientation.w = 0.0
 # pose_target.position.x = -0.7
 # pose_target.position.y = -0.3

@@ -134,7 +134,7 @@ class Pick_Place:
         # for the surface link.
         self._scene.add_box(name, p, (2.0, 1.0, 1.0))
         # Link Table to world link
-        self._scene.attach_box('world', name)
+        # self._scene.attach_box('world', name)
 
         return p.pose
 
@@ -144,8 +144,8 @@ class Pick_Place:
         rospy.loginfo(p.header.frame_id)
         p.header.stamp = rospy.Time.now()
 
-        p.pose.position.x = -0.3   
-        p.pose.position.y = -0.5
+        p.pose.position.x = 0.4   
+        p.pose.position.y = -0.4
         p.pose.position.z = 1.115
 
         q = quaternion_from_euler(0.0, 0.0, 0.0)
@@ -157,7 +157,7 @@ class Pick_Place:
         # The values are taken from the cylinder base diameter and height.
         self._scene.add_box(name, p, (0.11, 0.11, 0.23))
         # Link graps block to world link
-        self._scene.attach_box('world', name)
+        # self._scene.attach_box('world', name)
         return p.pose
 
     def _generate_grasps(self, pose, width):
@@ -266,13 +266,13 @@ class Pick_Place:
         goal.support_surface_name = self._table_object_name
 
         # Configure goal planning options:
-        goal.allowed_planning_time = 15.0
+        goal.allowed_planning_time = 30.0
 
         goal.planning_options.planning_scene_diff.is_diff = True
         goal.planning_options.planning_scene_diff.robot_state.is_diff = True
         goal.planning_options.plan_only = False
         goal.planning_options.replan = True
-        goal.planning_options.replan_attempts = 20
+        goal.planning_options.replan_attempts = 50 # 20
 
         return goal
 

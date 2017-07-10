@@ -31,7 +31,7 @@ robot.get_current_state
 
 pose_target = Pose()
 group.clear_pose_targets()
-# print robot.get_current_state()
+print robot.get_current_state()
 # pose_target.orientation.w = 0.0
 # pose_target.position.x = -0.7
 # pose_target.position.y = -0.3
@@ -41,7 +41,7 @@ group.clear_pose_targets()
 # rospy.sleep(5)
 
 pose_target.orientation = Quaternion(*quaternion_from_euler(90.0, 0.0, 0.0))
-pose_target.position.x = -0.65
+pose_target.position.x = -0.4
 pose_target.position.y = -0.3
 pose_target.position.z = 1.3
 group.set_pose_target(pose_target)
