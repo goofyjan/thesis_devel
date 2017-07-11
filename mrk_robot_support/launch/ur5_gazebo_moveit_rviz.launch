@@ -43,6 +43,6 @@
   <node name="controller_spawner" pkg="controller_manager" type="spawner" args="arm_controller gripper_controller --shutdown-timeout 10" />
 
   <!-- rviz launch -->
-  <!--node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /-->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
   
 </launch>

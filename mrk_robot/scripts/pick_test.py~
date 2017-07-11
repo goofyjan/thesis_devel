@@ -57,6 +57,11 @@ scene.add_box("part", p, (0.03, 0.03, 0.03))
 
 rospy.sleep(1)
 
+robot.right_arm.pick("part")
+
+rospy.spin()
+roscpp_shutdown()
+
 pose_target = Pose()
 group.clear_pose_targets()
 # print robot.get_current_state()

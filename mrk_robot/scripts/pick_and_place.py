@@ -144,8 +144,8 @@ class Pick_Place:
         p.header.stamp = rospy.Time.now()
 
         p.pose.position.x = 0.4   
-        p.pose.position.y = -0.4
-        p.pose.position.z = 1.115
+        p.pose.position.y = -0.3
+        p.pose.position.z = 1.3
 
         q = quaternion_from_euler(0.0, 0.0, 0.0)
         p.pose.orientation = Quaternion(*q)
