@@ -1,5 +1,5 @@
 <?xml version="1.0" ?>
-<robot name="ur5_gripper" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="ur5_gripper_without_camera" xmlns:xacro="http://ros.org/wiki/xacro">
 
   <!-- start: including -->
   <!-- gripper -->
@@ -8,7 +8,7 @@
   <xacro:include filename="$(find ur_description)/urdf/common.gazebo.xacro" />
   <xacro:include filename="$(find mrk_robot_support)/urdf/gazebo_extension.xacro" />
   <!-- RGB-D camera -->
-  <xacro:include filename="$(find mrk_robot_support)/urdf/sensors/xtion_pro_live.urdf.xacro"/>
+  <!-- <xacro:include filename="$(find mrk_robot_support)/urdf/sensors/xtion_pro_live.urdf.xacro"/> -->
   <!-- ur5 -->
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
   <!-- end: including -->
@@ -21,16 +21,16 @@
   <xacro:property name="arm_prefix" value=""/>
   <!-- end: properties -->
 
-  <!-- start: compentens instantiating -->
+  <!-- start: compontens instantiating -->
   <!-- arm instance-->
   <xacro:ur5_robot prefix="${arm_prefix}" joint_limited="true"/>
 
   <!-- gripper instance-->
   <!-- RGB-D camera instance -->
-  <xacro:xtion_pro_live name="rgbd_camera" parent="base">
-    <origin xyz="0.1 0 2" rpy="0 ${75.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
-    <origin xyz="0 0 0" rpy="${-90.0 * deg_to_rad} 0 ${-90.0 * deg_to_rad}"/>
-  </xacro:xtion_pro_live>
+  <!-- <xacro:xtion_pro_live name="rgbd_camera" parent="base"> -->
+  <!--   <origin xyz="0.1 0 2" rpy="0 ${75.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/> -->
+  <!--   <origin xyz="0 0 0" rpy="${-90.0 * deg_to_rad} 0 ${-90.0 * deg_to_rad}"/> -->
+  <!-- </xacro:xtion_pro_live> -->
   <!-- end: compentens instantiating -->
   
   <!-- start: xacro cylinder inertial -->
