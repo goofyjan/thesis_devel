@@ -1,0 +1,101 @@
+<?xml version="1.0"?>
+<robot name="exabot" xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- start: including -->
+
+  <xacro:include filename="$(find examples)/urdf/macros/cylinder_inertial.xacro" />
+  <xacro:include filename="$(find examples)/urdf/macros/world_link_joint.xacro" />
+  <xacro:include filename="$(find examples)/urdf/macros/cylinder_link_joint.xacro" />
+
+  <!-- end: including -->
+  
+  <!-- start: parameter definition -->
+  <!-- general -->
+  <xacro:property name="deg_to_rad" value="0.01745329251994329577" />
+
+  <!-- robot specific -->
+  <xacro:property name="stand_height" value="0.1" />
+  <xacro:property name="stand_radius" value="0.2" />
+  <xacro:property name="stand_mass" value="100.0" />
+  
+  <xacro:property name="base_height" value="0.1" />
+  <xacro:property name="base_radius" value="0.2" />
+  <xacro:property name="base_mass" value="3.0" />
+  
+  <xacro:property name="shoulder_height" value="0.4" />
+  <xacro:property name="shoulder_radius" value="0.05" />
+  <xacro:property name="shoulder_mass" value="1.0" />
+  
+  <xacro:property name="upper_arm_height" value="0.4" />
+  <xacro:property name="upper_arm_radius" value="0.05" />
+  <xacro:property name="upper_arm_mass" value="1.0" />
+  <!-- end: parameter definition -->
+
+  <!-- start: world link -->
+  <link name="world" />
+  <!-- end: world link -->
+
+  <!-- start: stand link/joint -->
+  <xacro:cylinder_link_joint
+      name="stand"
+      parent="world"
+      type="fixed"
+      radius="${stand_radius}"
+      height="${stand_height}"
+      mass="${stand_mass}">
+    <origin xyz="0 0 0" rpy="0 0 0"/>       
+    <joint_elements>
+      <origin xyz="0 0 ${stand_height/2}" rpy="0 0 0"/>       
+    </joint_elements>
+  </xacro:cylinder_link_joint>
+  <!-- end: stand link/joint -->
+
+  <!-- start: base link/joint -->
+  <xacro:cylinder_link_joint
+      name="base"
+      parent="stand"
+      type="fixed"
+      radius="${base_radius}"
+      height="${base_height}"
+      mass="${base_mass}">
+    <origin xyz="0 0 0" rpy="0 0 0"/>       
+    <joint_elements>
+      <origin xyz="0 0 ${base_height/2+stand_height/2}" rpy="0 0 0"/>       
+    </joint_elements>
+  </xacro:cylinder_link_joint>
+  <!-- end: base link/joint -->
+   
+  <!-- start: shoulder link/joint -->
+  <xacro:cylinder_link_joint
+      name="shoulder"
+      parent="base"
+      type="revolute"
+      radius="${shoulder_radius}"
+      height="${shoulder_height}"
+      mass="${shoulder_mass}">
+    <origin xyz="0 0 0" rpy="0 0 0"/>       
+    <joint_elements>
+      <origin xyz="0 0 ${shoulder_height/2+base_height/2}" rpy="0 0 0"/>
+      <axis xyz="0 0 1" />
+      <limit effort="30" velocity="1.0" lower="${-pi}" upper="${pi}" />
+    </joint_elements>
+  </xacro:cylinder_link_joint>
+  <!-- end: shoulder link/joint -->
+
+  <!-- start: upper arm link/joint -->
+  <xacro:cylinder_link_joint
+      name="upper_arm"
+      parent="shoulder"
+      type="revolute"
+      radius="${upper_arm_radius}"
+      height="${upper_arm_height}"
+      mass="${upper_arm_mass}">
+    <origin xyz="0 0 ${upper_arm_height/2}" rpy="0 0 0"/>       
+    <joint_elements>
+      <origin xyz="${-2*upper_arm_radius} 0 ${-upper_arm_radius+shoulder_height/2}" rpy="0 0 0"/>
+      <axis xyz="1 0 0" />
+      <limit effort="30" velocity="1.0" lower="${-pi/2}" upper="${pi/2}" />
+    </joint_elements>
+  </xacro:cylinder_link_joint>
+  <!-- end: upper arm link/joint -->
+  
+</robot>

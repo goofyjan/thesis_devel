@@ -131,7 +131,7 @@ class Pick_Place:
 
         # Table size from ~/.gazebo/models/table/model.sdf, using the values
         # for the surface link.
-        self._scene.add_box(name, p, (2.0, 1.0, 0.01))
+        self._scene.add_box(name, p, (2.0, 1.0, 1.0))
         # Link Table to world link
         # self._scene.attach_box('world', name)
 
@@ -144,8 +144,8 @@ class Pick_Place:
         p.header.stamp = rospy.Time.now()
 
         p.pose.position.x = 0.4   
-        p.pose.position.y = -0.3
-        p.pose.position.z = 1.3
+        p.pose.position.y = -0.5
+        p.pose.position.z = 1.15
 
         q = quaternion_from_euler(0.0, 0.0, 0.0)
         p.pose.orientation = Quaternion(*q)
@@ -154,7 +154,7 @@ class Pick_Place:
         # using the measure tape tool from meshlab.
         # The box is the bounding box of the coke cylinder.
         # The values are taken from the cylinder base diameter and height.
-        self._scene.add_box(name, p, (0.03, 0.03, 0.03))
+        self._scene.add_box(name, p, (0.11, 0.11, 0.23))
         # Link graps block to world link
         # self._scene.attach_box('world', name)
         return p.pose

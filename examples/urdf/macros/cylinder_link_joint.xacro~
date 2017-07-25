@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Defines a cylinder link with the name "'name'_link", a radius
+       'radius', a length 'height' and a mass 'mass'. It also defines
+       a appropriate 'type' joint with a parent link "'parent'_link" and an
+       origin '*origin_joint'. Please remember to set an origin element when
+       calling this macro. -->
+  
+  <!-- start: including -->
+  <xacro:include filename="$(find examples)/urdf/macros/cylinder_inertial.xacro" />
+  <!-- end: including -->
+
+  <xacro:macro
+      name="cylinder_link_joint"
+      params="name
+	      parent
+	      type
+	      radius
+	      height
+	      mass
+	      *link_origin
+	      **joint_elements">
+    
+    <link name="${name}_link">
+      <visual>
+	<xacro:insert_block name="link_origin" />
+	<geometry>
+	  <cylinder radius="${radius}" length="${height}"/>
+	</geometry>
+      </visual>
+      <collision>
+	<xacro:insert_block name="link_origin" />
+	<geometry>
+	  <cylinder radius="${radius}" length="${height}"/>
+	</geometry>
+      </collision>
+      <xacro:cylinder_inertial radius="${radius}" length="${height}" mass="${mass}">
+	<origin xyz="0 0 0" rpy="0 0 0" />
+      </xacro:cylinder_inertial>
+    </link>
+
+    <joint name="${name}_joint" type="${type}">
+      <xacro:if value="${parent == 'world'}">
+	<parent link="${parent}" />
+      </xacro:if>
+      <xacro:unless value="${parent == 'world'}">
+	<parent link="${parent}_link" />
+      </xacro:unless>
+      <child link = "${name}_link" />
+      <xacro:insert_block name="joint_elements" />
+    </joint>        
+  </xacro:macro>
+
+</robot>
