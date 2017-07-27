@@ -97,5 +97,16 @@
     <child link="tcp_link"/>
   </joint>
   <!-- end: Tool Center Point (TCP) -->
-  
+
+  <!-- start: Gazebo material information -->
+  <gazebo reference="gripper_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="l_finger_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <gazebo reference="r_finger_link">
+    <material>Gazebo/Orange</material>
+  </gazebo>
+  <!-- end: Gazebo material information -->
 </robot>
