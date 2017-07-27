@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!--  -->
+  <!-- start: including -->
+  <xacro:include filename="$(find examples)/urdf/macros/cylinder_inertial.xacro" />
+  <!-- end: including -->
+
+  <xacro:macro name="cylinder_link_joint" params="name parent radius height mass *origin">
+    <link name="${name}_link">
+      <visual>
+	<geometry>
+	  <cylinder radius="${radius}" length="${height}"/>
+	</geometry>
+      </visual>
+      <collision>
+	<geometry>
+	  <cylinder radius="${radius}" length="${height}"/>
+	</geometry>
+      </collision>
+      <xacro:cylinder_inertial radius="${radius}" length="${length}" mass="${mass}">
+	<origin xyz="0 0 0" rpy="0 0 0" />
+      </xacro:cylinder_inertial>
+    </link>
+
+    <joint name="stand_to_robot" type="fixed">
+      <parent link="stand_link" />
+      <child link = "base_link" />
+      <xacro:insert_block name="origin_joint" />
+    </joint>        
+  </xacro:macro>
+
+</robot>

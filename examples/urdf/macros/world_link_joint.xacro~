@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Defines a world link (required for gazebo) and an appropiate
+       joint to link 'childname' with an offest in z-direction
+       'zoffset'. -->
+  <xacro:macro name="world_link_joint" params="childname zoffset">
+    <link name="world" />
+
+    <joint name="world_joint" type="fixed">
+      <parent link="world" />
+      <child link = "${childname}" />
+      <origin xyz="0.0 0.0 ${zoffset}" rpy="0.0 0.0 0.0" />
+    </joint>  
+  </xacro:macro>
+  
+</robot>

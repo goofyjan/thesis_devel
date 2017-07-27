@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<launch>
+  <arg name="robot" default="ur5_gripper"/>
+  <arg name="group"        default="arm"/>
+  <arg name="end_effector" default="gripper"/>
+<!-- Which arm to use -->
+  <arg name="arm" default="gripper"/>
+  
+  <node pkg="moveit_simple_grasps" type="moveit_simple_grasps_server" name="moveit_simple_grasps_server" output="screen" args="--verbose">
+    <param name="group"        value="$(arg group)"/> 
+    <param name="end_effector" value="$(arg end_effector)"/>
+    <param name="arm" value="$(arg arm)"/>
+    <rosparam command="load" file="$(find mrk_robot_support)/config/$(arg robot)_grasp_data.yaml"/> 
+
+  </node>
+
+
+</launch>

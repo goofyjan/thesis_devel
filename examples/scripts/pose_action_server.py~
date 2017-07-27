@@ -1,0 +1,31 @@
+#!/usr/bin/env python
+import rospy
+import time
+import actionlib
+from examples.msg import PoseAction, PoseGoal, PoseResult, PoseFeedback
+
+def do_pose(goal):
+    start_time = time.time()
+    start_pose = Pose()
+    goal_pose = Pose()
+    
+    goal_pose = goal.goal_pose
+
+    while start_pose.position.x < goal_pose.position.x:
+        start_pose.position.x += 1
+
+        feddback = PoseFeedback()
+        feedback.current_pose = start_pose
+        feedback.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
+        server.publish_feedback(feedback)
+
+        time.sleep(1.0)
+
+    result = PoseResult()
+    result.time_elapsed = rospy.Duration.from_sec(time.time() - start_time)
+    server.set_succeded(result, "Reached Pose Goal successfully")
+
+rospy.init_node('pose_action_server')
+server = actionlib.SimpleActionServer('pose', PoseAction, do_pose, False)
+server.start()
+rospy.spin

@@ -1,0 +1,109 @@
+#!/usr/bin/env python
+
+import sys
+import copy
+import rospy
+import moveit_commander
+import moveit_msgs.msg
+import shape_msgs.msg 
+from geometry_msgs.msg import Pose, PoseStamped, PoseArray, Quaternion
+from tf.transformations import quaternion_from_euler
+
+print "============ Starting tutorial setup"
+moveit_commander.roscpp_initialize(sys.argv)
+rospy.init_node('move_group_python_interface_tutorial', anonymous=True)
+
+robot = moveit_commander.RobotCommander()
+scene = moveit_commander.PlanningSceneInterface()
+group = moveit_commander.MoveGroupCommander("arm")
+
+# print "============ Reference frame: %s" % group.get_planning_frame()
+# print "============ Reference frame: %s" % group.get_end_effector_link()
+# print "============ Robot Groups:"
+# print robot.get_group_names()
+# print "============ Printing robot state"
+# print robot.get_current_state()
+# print "============"
+
+# print "============ Generating plan 1"
+
+robot.get_current_state
+
+rospy.sleep(1)
+
+# clean the scene
+scene.remove_world_object("pole")
+scene.remove_world_object("table")
+scene.remove_world_object("part")
+
+# publish a demo scene
+p = PoseStamped()
+p.header.frame_id = robot.get_planning_frame()
+p.pose.position.x = 0.7
+p.pose.position.y = -0.4
+p.pose.position.z = 0.85
+p.pose.orientation.w = 1.0
+scene.add_box("pole", p, (0.3, 0.1, 1.0))
+
+p.pose.position.x = 0.0
+p.pose.position.y = -0.7
+p.pose.position.z = 0.5
+scene.add_box("table", p, (2.0, 1.0, 0.01))
+
+p.pose.position.x = 0.4
+p.pose.position.y = -0.3
+p.pose.position.z = 1.3
+scene.add_box("part", p, (0.03, 0.03, 0.03))
+
+rospy.sleep(1)
+
+pose_target = Pose()
+group.clear_pose_targets()
+# print robot.get_current_state()
+# pose_target.orientation.w = 0.0
+# pose_target.position.x = -0.7
+# pose_target.position.y = -0.3
+# pose_target.position.z = 1.1
+# group.set_pose_target(pose_target)
+# group.go(wait=True)
+# rospy.sleep(5)
+
+pose_target.orientation = Quaternion(*quaternion_from_euler(0.0, 0.0, 0.0))
+pose_target.position.x = 0.3
+pose_target.position.y = -0.3
+pose_target.position.z = 1.3
+group.set_pose_target(pose_target)
+group.go(wait=True)
+rospy.sleep(5)
+
+pose_target.orientation = Quaternion(*quaternion_from_euler(0.0, 0.0, 0.0))
+pose_target.position.x = 0.65
+pose_target.position.y = -0.3
+pose_target.position.z = 1.3
+group.set_pose_target(pose_target)
+group.go(wait=True)
+rospy.sleep(5)
+
+pose_target.orientation = Quaternion(*quaternion_from_euler(0.0, 0.0, 0.0))
+pose_target.position.x = 0.3
+pose_target.position.y = -0.3
+pose_target.position.z = 1.3
+group.set_pose_target(pose_target)
+group.go(wait=True)
+rospy.sleep(5)
+
+# group.clear_pose_targets()
+# group.set_named_target("place")
+# group.go(wait=True)
+# rospy.sleep(5)
+# group.set_named_target("up")
+# group.go(wait=True)
+# rospy.sleep(5)
+# group.set_named_target("home")
+# group.go(wait=True)
+
+# plan1 = group.plan()
+
+# group.execute(plan1)
+
+moveit_commander.roscpp_shutdown()

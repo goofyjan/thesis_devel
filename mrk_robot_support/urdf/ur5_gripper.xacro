@@ -16,7 +16,7 @@
   <!-- start: properties -->
   <xacro:property name="deg_to_rad" value="0.01745329251994329577"/>
   <xacro:property name="stand_radius" value="0.08" />
-  <xacro:property name="stand_length" value="1.1" />
+  <xacro:property name="stand_length" value="1.2" />
   <xacro:property name="stand_mass" value="20.0" />
   <xacro:property name="arm_prefix" value=""/>
   <!-- end: properties -->
@@ -28,7 +28,7 @@
   <!-- gripper instance-->
   <!-- RGB-D camera instance -->
   <xacro:xtion_pro_live name="rgbd_camera" parent="base">
-    <origin xyz="0.1 0 2" rpy="0 ${75.0 * deg_to_rad} 0"/>
+    <origin xyz="0 0 2" rpy="0 ${75.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>
     <origin xyz="0 0 0" rpy="${-90.0 * deg_to_rad} 0 ${-90.0 * deg_to_rad}"/>
   </xacro:xtion_pro_live>
   <!-- end: compentens instantiating -->
@@ -86,10 +86,17 @@
   <!-- end: base link -->
   
   <!-- start: arm-gripper joint -->
-    <joint name="${arm_prefix}to_gripper" type="fixed">
-      <parent link="${arm_prefix}ee_link"/>
-      <child link="gripper_ankle"/>
-      <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/> 
-    </joint>
+  <joint name="${arm_prefix}gripper_joint" type="fixed">
+    <parent link="${arm_prefix}ee_link"/>
+    <child link="gripper_link"/>
+    <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/> 
+  </joint>
   <!-- end: arm-gripper joint -->
+
+  <!-- start: Gazebo material information -->
+    <gazebo reference="stand_link">
+      <material>Gazebo/Grey</material>
+    </gazebo>
+  <!-- end: Gazebo material information -->
+  
 </robot>

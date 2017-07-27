@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <!-- Defines inertial block for cylinder geometry with radius 'radius', length 'length' and mass 'mass'. Please remember to set an origin element when calling this macro. -->
+<!-- start: xacro cylinder inertial -->
+  <xacro:macro name="cylinder_inertial" params="radius length mass *origin">
+    <inertial>
+      <mass value="${mass}" />
+      <xacro:insert_block name="origin" />
+      <inertia ixx="${mass/12 * (3 * radius * radius + length * length)}" ixy="0.0" ixz="0.0"
+               iyy="${mass/12 * (3 * radius * radius + length * length)}" iyz="0.0"
+               izz="${mass/2 * radius * radius}" />
+    </inertial>
+  </xacro:macro>
+  <!-- end: xacro cylinder inertial -->
+</robot>

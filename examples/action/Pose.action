@@ -1,0 +1,9 @@
+# Define the goal
+geometry_msgs/Pose goal_pose
+---
+# Define the result
+duration time_elapsed
+---
+# Define a feedback message
+geometry_msgs/Pose current_pose
+duration time_elapsed

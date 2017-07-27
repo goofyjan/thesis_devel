@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="publisher" pkg="examples" type="pose_publisher.py" output="screen" />
+  <node name="subscriber" pkg="examples" type="pose_subscriber.py" output="screen" />
+</launch>

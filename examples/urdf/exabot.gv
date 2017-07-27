@@ -1,0 +1,11 @@
+digraph G {
+node [shape=box];
+"world" [label="world"];
+"stand_link" [label="stand_link"];
+"shoulder_link" [label="shoulder_link"];
+node [shape=ellipse, color=blue, fontcolor=blue];
+"world" -> "stand_joint" [label="xyz: 0 0 0.05 \nrpy: 0 -0 0"]
+"stand_joint" -> "stand_link"
+"stand_link" -> "shoulder_joint" [label="xyz: 0 0 0.25 \nrpy: 0 -0 0"]
+"shoulder_joint" -> "shoulder_link"
+}
