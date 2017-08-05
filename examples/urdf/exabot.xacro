@@ -2,7 +2,7 @@
 <robot name="exabot" xmlns:xacro="http://ros.org/wiki/xacro">
   <!-- Defines an example roboter 'exabot'. Its purpose is to show how
        to work with xacro macros and general URDF. All files used in
-       this example are written by Jan Thröner within the scope of his
+       this example are written by Jan Throener within the scope of his
        masterthesis. -->
   
   <!-- start: including -->
