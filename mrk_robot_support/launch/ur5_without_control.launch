@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="allow_sensor" default="true"/>
+  <arg name="debug" default="false" />
+  <arg name="model" default="$(find mrk_robot_support)/urdf/ur5_gripper_without_control.xacro"/>
+  <arg name="gui" default="false" />
+  <arg name="rvizconfig" default="$(find mrk_robot_support)/rviz/rgbd_pick_place.rviz" />
+  <param name="robot_description" command="$(find xacro)/xacro --inorder '$(arg model)'"/>
+  
+
+  <!-- Publish joint states -->
+
+
+  <!-- Given the published joint states, publish tf for the robot links -->
+
+  <!-- Start Gazebo with an empty world -->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find mrk_robot_support)/worlds/grasping.world"/>
+    <arg name="paused" value="false"/>
+  </include>
+  
+  <!-- Spawn robot model in Gazebo -->
+  <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" args="-param robot_description -urdf -model ur5_gripper" />
+</launch>

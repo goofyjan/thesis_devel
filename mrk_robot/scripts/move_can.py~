@@ -24,24 +24,30 @@ pose_target = Pose()
 robot.get_current_state
 
 rospy.sleep(1)
-group.set_named_target("up")
-group.go(wait=True)
+# group.set_named_target("up")
+# group.go(wait=True)
 
-pose_target.orientation = Quaternion(*quaternion_from_euler(3.1416, 0.0, -1.5708))
-pose_target.position.x = -0.4
-pose_target.position.y = -0.5
-pose_target.position.z = 1.3
-group.set_pose_target(pose_target)
-group.go(wait=True)
-rospy.sleep(10)
+# pose_target.orientation = Quaternion(*quaternion_from_euler(3.1416, 0.0, -1.5708))
+# pose_target.position.x = -0.4
+# pose_target.position.y = -0.5
+# pose_target.position.z = 1.3
+# group.set_pose_target(pose_target)
+# group.go(wait=True)
+# rospy.sleep(5)
 
 pose_target.orientation = Quaternion(*quaternion_from_euler(0.0, 0.0, -1.5708))
 pose_target.position.x = 0.4
-pose_target.position.y = -0.5
+pose_target.position.y = -0.47
 pose_target.position.z = 1.3
 group.set_pose_target(pose_target)
 group.go(wait=True)
-rospy.sleep(5)
+
+pose_target.orientation = Quaternion(*quaternion_from_euler(0.0, 0.0, -1.5708))
+pose_target.position.x = 0.4
+pose_target.position.y = -0.47
+pose_target.position.z = 1.2
+group.set_pose_target(pose_target)
+group.go(wait=True)
 
 moveit_commander.roscpp_shutdown()
 

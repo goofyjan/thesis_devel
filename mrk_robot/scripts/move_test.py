@@ -8,7 +8,7 @@ from geometry_msgs.msg import Pose, Quaternion
 from tf.transformations import quaternion_from_euler
 
 moveit_commander.roscpp_initialize(sys.argv)
-rospy.init_node('move_group_test', anonymous=True)
+rospy.init_node('motion_test', anonymous=True)
 
 robot = moveit_commander.RobotCommander()
 scene = moveit_commander.PlanningSceneInterface()
@@ -22,11 +22,12 @@ group = moveit_commander.MoveGroupCommander("arm")
 # group.set_pose_reference_frame("world")
 pose_target = Pose()
 robot.get_current_state
-
+# first position
 rospy.sleep(1)
 group.set_named_target("up")
 group.go(wait=True)
 
+# second position (left hand side of human)
 pose_target.orientation = Quaternion(*quaternion_from_euler(3.1416, 0.0, -1.5708))
 pose_target.position.x = -0.4
 pose_target.position.y = -0.5
@@ -35,6 +36,7 @@ group.set_pose_target(pose_target)
 group.go(wait=True)
 rospy.sleep(10)
 
+# third position (right hand side of human)
 pose_target.orientation = Quaternion(*quaternion_from_euler(0.0, 0.0, -1.5708))
 pose_target.position.x = 0.4
 pose_target.position.y = -0.5

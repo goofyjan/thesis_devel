@@ -9,9 +9,9 @@
     <gui>
       <camera name="camera">
 	<!-- front -->
-        <!-- <pose>0 4 3.0 0 0.4 -1.5708</pose> -->
+        <pose>0 4 3.0 0 0.4 -1.5708</pose>
 	<!-- above -->
-	<pose>0 -0.55 4.5 0 1.5708 -1.5708</pose>
+	<!-- <pose>0 -0.55 4.5 0 1.5708 -1.5708</pose> -->
       </camera>
     </gui>  
     <include>
