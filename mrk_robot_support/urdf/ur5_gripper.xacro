@@ -24,8 +24,6 @@
   <!-- start: compentens instantiating -->
   <!-- arm instance-->
   <xacro:ur5_robot prefix="${arm_prefix}" joint_limited="true"/>
-
-  <!-- gripper instance-->
   <!-- RGB-D camera instance -->
   <xacro:xtion_pro_live name="rgbd_camera" parent="base">
     <origin xyz="0 0 2" rpy="0 ${75.0 * deg_to_rad} ${-90.0 * deg_to_rad}"/>

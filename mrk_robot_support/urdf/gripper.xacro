@@ -1,6 +1,5 @@
 <?xml version="1.0" ?>
 <robot name="gripper" xmlns:xacro="http://ros.org/wiki/xacro">
-
   <!-- start: Properties -->
   <xacro:property name="pi" value="3.1415926535897931" />
   <xacro:property name="finger_width" value="0.03" />
