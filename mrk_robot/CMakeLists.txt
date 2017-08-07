@@ -1,11 +1,14 @@
 cmake_minimum_required(VERSION 2.8.3)
 project(mrk_robot)
+add_compile_options(-std=c++11)
 
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
-  moveit_commander  
+  moveit_commander
+  trajectory_msgs
 )
+
 
 ###################################
 ## catkin specific configuration ##
@@ -13,7 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES mrk_robot
-CATKIN_DEPENDS roscpp rospy moveit_commander 
+CATKIN_DEPENDS roscpp rospy moveit_commander trajectory_msgs
 #  DEPENDS system_lib
 )
 
