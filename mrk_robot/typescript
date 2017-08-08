@@ -1,0 +1,26 @@
+Script started on Mo 07 Aug 2017 10:52:08 CEST
+[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot]1;..src/mrk_robot[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot [43m[34m[30m  thesis-prep ● [49m[33m[39m [K[?1h=[?2004hsscrips ts[1m/[0m[0m [?1l>[?2004l
+]2;scripts]1;scripts[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot/scripts]1;..robot/scripts[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot/scripts [43m[34m[30m  thesis-prep ● [49m[33m[39m [K[?1h=[?2004hcchmod a= +x open_gripper.py[K[?1l>[?2004l
+]2;chmod a+x open_gripper.py]1;chmod[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src/mrk_robot/scripts]1;..robot/scripts[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src/mrk_robot/scripts [43m[34m[30m  thesis-prep ● [49m[33m[39m [K[?1h=[?2004h....  .../../.  /[?1l>[?2004l
+]2;../../]1;../../[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src]1;~/thesis_ws/src[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src [43m[34m[30m  thesis-prep ● [49m[33m[39m [K[?1h=[?2004hggit add .[?1l>[?2004l
+]2;git add .]1;git[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src]1;~/thesis_ws/src[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src [43m[34m[30m  thesis-prep ✚ [49m[33m[39m [K[?1h=[?2004hggit commit -\  a -m !  " Pz ython g Gripper        gripper open [K//close! "[?1l>[?2004l
+]2;git commit -a -m "Python gripper open/close"]1;git[thesis-prep 61a510a] Python gripper open/close
+ 18 files changed, 119 insertions(+), 28 deletions(-)
+ create mode 100755 examples/scripts/#pose_publisher.py#
+ rename {mrk_robot_support => mrk_robot/scripts}/closeGripper.sh (100%)
+ create mode 100755 mrk_robot/scripts/close_gripper.py
+ create mode 100755 mrk_robot/scripts/close_gripper.py~
+ rename {mrk_robot_support => mrk_robot/scripts}/moveDown.sh (100%)
+ rename {mrk_robot_support => mrk_robot/scripts}/moveHome.sh (100%)
+ rename {mrk_robot_support => mrk_robot/scripts}/moveUp.sh (100%)
+ rename {mrk_robot_support => mrk_robot/scripts}/openGripper.sh (100%)
+ create mode 100755 mrk_robot/scripts/open_gripper.py
+ create mode 100644 mrk_robot/scripts/open_gripper.py~
+ rewrite mrk_robot/typescript (100%)
+ delete mode 100644 mrk_robot_support/closeGripper.sh~
+ delete mode 100644 mrk_robot_support/move1.sh~
+ delete mode 100644 mrk_robot_support/moveGripper.sh~
+ delete mode 100755 mrk_robot_support/moveUp.sh~
+ delete mode 100755 mrk_robot_support/openGripper.sh~
+[1m[7m%[27m[1m[0m                                                                                    ]2;jth@jth: ~/thesis_ws/src]1;~/thesis_ws/src[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src [42m[34m[30m  thesis-prep [49m[32m[39m [K[?1h=[?2004h[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src [42m[34m[30m  thesis-prep [49m[32m[39m cclear[?1l>[?2004l
+]2;clear]1;clear[3;J[H[2J[1m[7m%[27m[1m[0m                                                                                                                                                                            ]2;jth@jth: ~/thesis_ws/src]1;~/thesis_ws/src[0m[27m[24m[J[39m[0m[49m[40m[39m jth@jth [44m[30m[30m ~/thesis_ws/src [42m[34m

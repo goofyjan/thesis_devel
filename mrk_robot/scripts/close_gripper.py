@@ -13,7 +13,7 @@ points = JointTrajectoryPoint()
 
 trajectory.joint_names.append("r_finger_joint")
 trajectory.joint_names.append("l_finger_joint")
-points.positions = [0.06,0.06]
+points.positions = [0.04,0.04]
 points.time_from_start.secs = 1.0
 
 trajectory.points.append(points)
